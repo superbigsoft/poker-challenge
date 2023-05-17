@@ -27,8 +27,11 @@ function initRakedCombinations(cards: Card[]) {
     ];
 }
 
-export function setupBestCombination(cardTokens: string[]): Combination {
-    const cards = cardTokens.map(cardToken => Card.createCardFromString(cardToken))
-    const bestCombination = initRakedCombinations(cards).find((combination => combination.isMatched()))
-    return bestCombination!
+export class CombinationManager {
+    static setupBestCombination(cardTokens: string[]): Combination {
+        const cards = cardTokens.map(cardToken => Card.createCardFromString(cardToken))
+        const bestCombination = initRakedCombinations(cards).find((combination => combination.isMatched()))
+        return bestCombination!
+    }
 }
+

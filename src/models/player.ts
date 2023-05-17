@@ -1,4 +1,4 @@
-import { setupBestCombination } from "../managers/combinationManager"
+import { CombinationManager } from "../managers/combinationManager"
 import { Combination } from "./combinations/combination"
 
 export class Player {
@@ -23,7 +23,7 @@ export class Player {
     getNextHand(): Combination | null {
         const cardTokens = this.rounds.shift()
         if (cardTokens !== undefined) {
-            const bestCombination = setupBestCombination(cardTokens)
+            const bestCombination = CombinationManager.setupBestCombination(cardTokens)
             this.bestCombinations.push(bestCombination)
             return bestCombination
         }

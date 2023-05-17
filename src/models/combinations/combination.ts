@@ -55,4 +55,8 @@ export abstract class Combination {
     getCardGroupsInfo(): CardGroupsInfo {
         return new CardGroupsInfo(this.cards)
     }
+
+    isDraw(combination: Combination): boolean {
+        return this.getRank() === combination.getRank() && this.getScore() === combination.getScore()
+    }
 }

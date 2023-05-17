@@ -4,10 +4,6 @@ import { Player } from "../models/player";
 export class PokerRoundManager {
     players: Player[];
 
-    static isDraw(combination1: Combination, combination2: Combination): boolean {
-        return combination1.getRank() === combination2.getRank() && combination1.getScore() === combination2.getScore()
-    }
-
     static decideWinner(hands: Combination[]) {
         const winnerFirstSortedHands = hands.sort((a, b) => {
             // First compare Rank
@@ -20,7 +16,7 @@ export class PokerRoundManager {
         })
 
         // Handle draw case
-        if (!PokerRoundManager.isDraw(winnerFirstSortedHands[0], winnerFirstSortedHands[1])) {
+        if (!winnerFirstSortedHands[0].isDraw(winnerFirstSortedHands[1])) {
             winnerFirstSortedHands[0].setAsWinner()
         }
     }
