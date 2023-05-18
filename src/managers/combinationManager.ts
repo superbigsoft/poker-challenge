@@ -11,27 +11,33 @@ import { StraightFlush } from "../models/combinations/straightFlush";
 import { ThreeOfAKind } from "../models/combinations/threeOfAKind";
 import { TwoPairs } from "../models/combinations/twoPairs";
 
-
-function initRakedCombinations(cards: Card[]) {
-    return [
-        new RoyalFlush(cards),
-        new StraightFlush(cards),
-        new FourOfAKind(cards),
-        new FullHouse(cards),
-        new Flush(cards),
-        new Straight(cards),
-        new ThreeOfAKind(cards),
-        new TwoPairs(cards),
-        new Pair(cards),
-        new HighCard(cards)
-    ];
-}
+const RakedCombinationsTypes = [
+    RoyalFlush,
+    StraightFlush,
+    FourOfAKind,
+    FullHouse,
+    Flush,
+    Straight,
+    ThreeOfAKind,
+    TwoPairs,
+    Pair,
+    HighCard
+]
 
 export class CombinationManager {
+
     static setupBestCombination(cardTokens: string[]): Combination {
         const cards = cardTokens.map(cardToken => Card.createCardFromString(cardToken))
-        const bestCombination = initRakedCombinations(cards).find((combination => combination.isMatched()))
-        return bestCombination!
+
+        for (let i = 0; i < RakedCombinationsTypes.length; i+=1) {
+            const combination = new RakedCombinationsTypes[i](cards);
+
+            if (combination.isMatched()) {
+                return combination;
+            }
+        }
+
+        return new HighCard(cards)
     }
 }
 
