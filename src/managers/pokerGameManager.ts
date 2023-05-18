@@ -1,3 +1,4 @@
+import { Card } from '../models/card'
 import { Player } from '../models/player'
 import { PokerRoundManager } from './pokerRoundManager'
 
@@ -6,8 +7,20 @@ export class PokerGameManager {
 
     roundManager: PokerRoundManager
 
-    static parseRoundsTokensForPlayers(playerCount: number, roundsTokens:string[]): Array<Array<string[]>> {
-        const result: Array<Array<string[]>> = []
+
+
+    /**
+     * Split the input roundsTokens read from STDIN into chunks.
+     * Each chunk is for one player and is a list of game rounds.
+     * Each round has a list of cards
+     * @static
+     * @param {number} playerCount
+     * @param {string[]} roundsTokens
+     * @return {*}  {Array<Array<Card[]>>}
+     * @memberof PokerGameManager
+     */
+    static parseRoundsTokensForPlayers(playerCount: number, roundsTokens:string[]): Array<Array<Card[]>> {
+        const result: Array<Array<Card[]>> = []
         for(let i = 1; i <= playerCount; i += 1) {
             result.push([])        
         } 
@@ -15,7 +28,9 @@ export class PokerGameManager {
         roundsTokens.forEach(roundTokensString => {
             const roundTokens = roundTokensString.split(' ')
             for(let i = 0; i < playerCount; i+=1) {
-                result[i].push(roundTokens.slice(i * 5, i * 5 + 5))
+                result[i].push(
+                    roundTokens.slice(i * 5, i * 5 + 5)
+                               .map(cardToken => Card.createCardFromString(cardToken)))
             } 
         })
 

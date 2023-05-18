@@ -3,7 +3,7 @@
 This is the implementation for Argenti's poker challenge.
 
 ## Implementation Report
-- Spent time: 12 hours.
+- Spent time: 16 hours.
 - Language: Typescript
 - Design: Object Oriented.
 - Unittest: 99.5% code coverage.
@@ -31,7 +31,7 @@ The most difficult part of this challenge is to determine the winner among the l
       - Use the scoring factor and multiply with the score of a card in that group to get the final score of a group.
       - Sum all the group's score to get the final score of the combination.
 
-The solution has been implemented to support more than 2 players.
+The design of this solution includes a class diagram and a sequence diagram created with StarUML and  is placed in folder `docs/design`. It also supports more than 2 players.
 ## Running the code
 
 Install Typescript globally:

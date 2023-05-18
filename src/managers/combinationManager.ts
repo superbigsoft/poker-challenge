@@ -26,9 +26,7 @@ const RakedCombinationsTypes = [
 
 export class CombinationManager {
 
-    static setupBestCombination(cardTokens: string[]): Combination {
-        const cards = cardTokens.map(cardToken => Card.createCardFromString(cardToken))
-        
+    static setupBestCombination(cards: Card[]): Combination {
         for (let i = 0; i < RakedCombinationsTypes.length; i+=1) {
             const combination = new RakedCombinationsTypes[i](cards);
 
@@ -37,7 +35,7 @@ export class CombinationManager {
             }
         }
 
-        throw Error(`Can't find combination for ${cardTokens}`)
+        throw Error(`Can't find combination for ${cards}`)
     }
 }
 

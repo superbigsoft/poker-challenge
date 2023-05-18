@@ -1,14 +1,15 @@
 import { CombinationManager } from "../managers/combinationManager"
+import { Card } from "./card"
 import { Combination } from "./combinations/combination"
 
 export class Player {
-    rounds: Array<string[]>
+    rounds: Array<Card[]>
 
     bestCombinations: Combination[] = []
 
     playerNumber: number
 
-    constructor(playerNumber: number, rounds: Array<string[]>) {
+    constructor(playerNumber: number, rounds: Array<Card[]>) {
         this.playerNumber = playerNumber
         this.rounds = rounds
     }
@@ -21,9 +22,9 @@ export class Player {
      * @return {(Combination | null)} The combination with highest rank
      */
     getNextHand(): Combination | null {
-        const cardTokens = this.rounds.shift()
-        if (cardTokens !== undefined) {
-            const bestCombination = CombinationManager.setupBestCombination(cardTokens)
+        const cards = this.rounds.shift()
+        if (cards !== undefined) {
+            const bestCombination = CombinationManager.setupBestCombination(cards)
             this.bestCombinations.push(bestCombination)
             return bestCombination
         }

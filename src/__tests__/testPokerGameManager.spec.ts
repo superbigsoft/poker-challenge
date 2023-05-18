@@ -9,10 +9,10 @@ test('game manager parse input roundsTokens correctly', () => {
   ]
   const result = PokerGameManager.parseRoundsTokensForPlayers(2, roundsTokens)
   expect(result.length).toBe(2)
-  expect(result[0][0]).toEqual(['9C', '9D', '8D', '7C', '3C'])
-  expect(result[0][1]).toEqual(['6C', '5H', 'AS', '4H', '7S'])
-  expect(result[1][0]).toEqual(['2S', 'KD', 'TH', '9H', '8H'])
-  expect(result[1][1]).toEqual(['2S', 'KD', '7H', '2C', 'AC'])
+  expect(result[0][0].map(card => card.value + card.suit)).toEqual(['9C', '9D', '8D', '7C', '3C'])
+  expect(result[0][1].map(card => card.value + card.suit)).toEqual(['6C', '5H', 'AS', '4H', '7S'])
+  expect(result[1][0].map(card => card.value + card.suit)).toEqual(['2S', 'KD', 'TH', '9H', '8H'])
+  expect(result[1][1].map(card => card.value + card.suit)).toEqual(['2S', 'KD', '7H', '2C', 'AC'])
 });
 
 test('game manager returns correct result for 8 rounds', () => {
