@@ -32,6 +32,23 @@ test('game manager returns correct result for 8 rounds', () => {
   expect(result[1]).toEqual('Player 2: 2 hands')
 });
 
+
+test('game manager can handle 3 players', () => {
+  const roundsTokens = [
+    "4H 4C 6S 7S KD 2C 3S 9S 9D TD TC AC JC KC QC",
+    "5D 8C 9S JS AC TC AC JC KC QC 2C 5C 7D 8S QH",
+    "TC AC JC KC QC 2D 9C AS AH AC 3D 6D 7D TD QD",
+    "4D 6S 9H QH QC 3D 6D 7H QD QS TC AC JC KC QC",
+    "TC AC JC KC QC 2H 2D 4C 4D 4S 3C 3D 3S 9S 9D",
+  ]
+  const manager = new PokerGameManager(3, roundsTokens)
+  const result = manager.checkGame()
+  expect(result.length).toBe(3)
+  expect(result[0]).toEqual('Player 1: 2 hands')
+  expect(result[1]).toEqual('Player 2: 1 hands')
+  expect(result[2]).toEqual('Player 3: 2 hands')
+});
+
 test('game manager returns correct result for 500 rounds', () => {
   const data = fs.readFileSync(path.resolve(__dirname, './data/500Rounds.txt'), 'utf8')
   const roundsTokens = data.toString().split("\n")

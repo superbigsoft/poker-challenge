@@ -1,22 +1,52 @@
-# Argenti - Typescript Poker Challenge
+# Typescript Poker Challenge
 
-This is the scaffold project for Argenti's poker challenge.
-Use this template to get you up and running for the Argenti challenge, then make changes to the `src/` directory
-to have a functioning solution based on our given instructions.
+This is the implementation for Argenti's poker challenge.
 
-## Project structure
+## Implementation Report
+- Spent time: 12 hours.
+- Language: Typescript
+- Design: Object Oriented.
+- Unittest: 100% code coverage.
 
-All the relevant code sits in `src/`. An `index.ts` is already present, but there is no limit to writing all your code inside or outside of it. All Jest tests should sit in the `__tests__` folder, and the naming convention requires that the filename includes `.spec` or `.test`, otherwise it will not be picked up.
+## Lessons Learnt
+- Typescript: I have just finished the Typescript lesson of Linkedin Learning last week and decided to try it with this challenge. Compared to Javascript I feel more confident and much faster to code with Typescript thank to rich tooling support in VSCode including Intellisense and Refactoring.
 
-This project also has prettier and eslint set up, making sure that those are both passing will be beneficial to your challenge's review. At the end of this file, you will find links to VSCode extensions that help automatically run Prettier and ESLint whilst you write code.
+- Jest: This is the first time I use Jest. It's quite straightforward to implement simple unit tests. However I had difficulty trying to use jest-ts-auto-mock to create mock object from a class in my test cases. Due to time constraint I had fallen back to using core mock function of Jest.
 
-## Input file
+## Solution discussion
+The most difficult part of this challenge is to determine the winner among the list of players. This means we need to:
+1. Find the highest rank combination for the given cards of each player:
+- Preparing a list of Combination matchers ordered by rank descending.
+- The first matched Combination for the provided cards is the final result.
+2. Identify the combination having highest rank and if same rank having the highest sub ranks:
+- Each Combination has its own rank so it's straight forward to solve the first part.
+- When two combinations have same rank we will calculate the score of each combination to find the winner:
+  - Group 1: Straight combinations (Straight, Straight Flush, Royal Flush) => sum of card's value.
+  - Group 2: Group combinations (all others):
+    - Organise cards into groups based on its score and order asc the groups based on:
+      - its number of cards (because: four of a kind > three of a kind > pair > high card)
+      - its card's value (because: pair of 3 > pair of 2, high card 3 > high card 2)
+    - Calculate the score:
+      - Use the index of each each group and multiply with the SCORING_BASE_FACTOR to calculate the scoring factor of that group.
+      - Use the scoring factor and multiply with the score of a card in that group to get the final score of a group.
+      - Sum all the group's score to get the final score of the combination.
 
-The input file you are required to read is available in `bin/poker-hands.txt`. Make sure your program can read the file from that location.
-
+The solution has been implemented to support more than 2 players.
 ## Running the code
 
-To run the code whilst developing, use the following command:
+Install Typescript globally:
+
+```bash
+npm install -g typescript
+```
+
+Install dependent packages :
+
+```bash
+yarn
+```
+
+Run the code using the provided test file `poker-hands.txt` in bin folder :
 
 ```bash
 yarn start
@@ -24,28 +54,24 @@ yarn start
 
 ## Testing the code
 
-To run the [Jest](https://jestjs.io/) unit test, use the following command:
+Execute unit test and generate code coverage report in folder `coverage`:
 
 ```bash
 yarn test
 ```
 
-## Extensions
+## Build
 
-### ESLint
+Build Typescript and output Javascript in folder `dist`.
 
-Name: ESLint  
-Id: dbaeumer.vscode-eslint  
-Description: Integrates ESLint JavaScript into VS Code.  
-Version: 2.2.2  
-Publisher: Microsoft  
-VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
+```bash
+yarn build
+```
 
-### Prettier
+## Execute built tool
 
-Name: Prettier - Code formatter  
-Id: esbenp.prettier-vscode  
-Description: Code formatter using prettier  
-Version: 9.5.0  
-Publisher: Prettier  
-VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
+Use the below command to execute the built tool.
+
+```bash
+cat ./bin/poker-hands.txt | node dist/index.js
+```

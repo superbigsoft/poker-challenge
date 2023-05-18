@@ -19,6 +19,14 @@ export abstract class Combination {
 
     abstract getRank(): number
 
+
+    /**
+     * Calculate the score of this combination which is used to compare with another combination having the same rank.
+     *
+     * @abstract
+     * @return calulated score  {number}
+     * @memberof Combination
+     */
     abstract getScore(): number
 
     setAsWinner(): void {
@@ -27,10 +35,6 @@ export abstract class Combination {
 
     private sortCardsAsc(): void {
         this.cards = this.cards.sort((a, b) => a.score - b.score)
-    }
-
-    protected sumScoreOfStraight(): number {
-        return _.sumBy(this.cards, card => card.score)
     }
 
     isSameSuit(): boolean {

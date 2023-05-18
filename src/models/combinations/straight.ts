@@ -1,14 +1,10 @@
-import { Combination } from "./combination";
+import { StraightCombination } from "./straightCombination"
 
-export class Straight extends Combination {
+export class Straight extends StraightCombination {
     getRank(): number {
         return 5
     }
     
-    getScore(): number {
-        return this.sumScoreOfStraight()
-    }
-
     isMatched(): boolean {
         return this.isStraight()
     }
