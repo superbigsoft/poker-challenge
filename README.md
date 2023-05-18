@@ -6,7 +6,7 @@ This is the implementation for Argenti's poker challenge.
 - Spent time: 12 hours.
 - Language: Typescript
 - Design: Object Oriented.
-- Unittest: 100% code coverage.
+- Unittest: 99.5% code coverage.
 
 ## Lessons Learnt
 - Typescript: I have just finished the Typescript lesson of Linkedin Learning last week and decided to try it with this challenge. Compared to Javascript I feel more confident and much faster to code with Typescript thank to rich tooling support in VSCode including Intellisense and Refactoring.
