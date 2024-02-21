@@ -1,0 +1,23 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "bbUseDefaultReviewers": true,
+  "baseBranches": ["master"],
+  "packageRules": [
+    {
+      "matchUpdateTypes": [
+        "major",
+        "minor",
+        "patch"
+      ],
+      "major": {
+        "commitMessagePrefix": "BREAKING CHANGE:",
+        "prBodyDefinitions": {
+          "text": "This is a major upgrade possibly introducing breaking changes. Please review the change list accordingly."
+        }
+      }
+    }
+  ]
+}
