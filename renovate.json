@@ -7,8 +7,6 @@
   "baseBranches": ["main"],
   "major": {
     "commitMessagePrefix": "BREAKING CHANGE:",
-    "prBodyDefinitions": {
-      "text": "This is a major upgrade possibly introducing breaking changes. Please review the change list accordingly."
-    }
+    "prBodyNotes": "This is a major upgrade possibly introducing breaking changes. Please review the change list accordingly."
   }
 }
