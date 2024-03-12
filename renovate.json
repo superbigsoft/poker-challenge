@@ -7,6 +7,6 @@
   "baseBranches": ["main"],
   "major": {
     "commitMessagePrefix": "BREAKING CHANGE:",
-    "prBodyNotes": "This is a major upgrade possibly introducing breaking changes. <ul><li>line1</li><li>line2</li></ul>"
+    "prBodyNotes": "This is a major upgrade possibly introducing breaking changes. Please:<ul><li>Review the provided change log. If ChangeLog is not provided, find the ChangeLog and add as a comment.</li><li>If there are some risk elements, pull the branch and test it locally.</li></ul>"
   }
 }
